@@ -1,10 +1,8 @@
 // CREATE CANVAS WITHOUT TOUCHING HTML
 
 var canvas = document.createElement("canvas");
-canvas.id = "myCanvas";
-canvas.height = "400";
-canvas.width = "400";
-var header = document.getElementById("Crimes_et_d.C3.A9lits_enregistr.C3.A9s_par_les_services_de_police");
+canvas.id = "myChart";
+var header = document.getElementsByTagName("h3")[0];
 header.appendChild(canvas);
 
 // ACCESS ELEMENTS TO INPUT THEM IN TABLE
@@ -19,17 +17,19 @@ var correctYear = years.getElementsByTagName("th");
 console.log(correctYear);
 
 for (l = 2; l < correctYear.length; l++) {
-    var labels = correctYear[l].innerHTML;
-    console.log(labels);
+    var awesomeYears = correctYear[l].innerHTML;
+    console.log(awesomeYears);
 }
 
 // CHART.JS CODE
 
 var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
-    type: 'line',
+    type: 'bar',
     data: {
-        labels: labels,
+
+        
+        labels: [awesomeYears],
         datasets: [{
             label: '# of Votes',
             data: [12, 19, 3, 5, 2, 3],
