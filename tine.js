@@ -2,16 +2,34 @@
 
 var canvas = document.createElement("canvas");
 canvas.id = "myCanvas";
+canvas.height = "400";
+canvas.width = "400";
 var header = document.getElementById("Crimes_et_d.C3.A9lits_enregistr.C3.A9s_par_les_services_de_police");
 header.appendChild(canvas);
 
-//CHART.JS CODE
+// ACCESS ELEMENTS TO INPUT THEM IN TABLE
+
+var tableOne = document.getElementById("table1");
+console.log(tableOne);
+var tableOneBody = tableOne.getElementsByTagName("tbody");
+console.log(tableOneBody);
+var years = tableOneBody[0].childNodes[1];
+console.log(years);
+var correctYear = years.getElementsByTagName("th");
+console.log(correctYear);
+
+for (l = 2; l < correctYear.length; l++) {
+    var labels = correctYear[l].innerHTML;
+    console.log(labels);
+}
+
+// CHART.JS CODE
 
 var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
-    type: 'bar',
+    type: 'line',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: labels,
         datasets: [{
             label: '# of Votes',
             data: [12, 19, 3, 5, 2, 3],
