@@ -29,6 +29,21 @@ for (l = 2; l < correctYear.length; l++) {
     yearList.push(awesomeYears);
 }
 
+//Countrylist tryout
+
+// var countryList = [];
+// var tableRowLength = tableOne.rows.length;
+// console.log(tableRowLength);
+
+// var country = tableOne.rows.item(2).cells;
+// var countryName = country.item(1).innerHTML;
+// console.log(countryName);
+
+// for (co = 2; co < tableOne.rows.length; co++) {
+//     var countryNames = tableOne.rows(co).item(2).innerHTML;
+//     console.log(countryNames);
+// }
+
 // DATA 
 //BELGIQUE
 
@@ -156,13 +171,48 @@ var dataEstonie = {
     data: EstonieNombres,
 };
 
+//IRLANDE
 
+var Irlande = tableOne.rows.item(8).cells;
+var IrlandeNom = Irlande.item(1).innerHTML;
+var IrlandeNombres = [];
 
+for (ir = 2; ir <Irlande.length; ir++) {
+    var IrlandeNrs = Irlande.item(ir).innerHTML;
+    IrlandeNombres.push(IrlandeNrs);
+}
+
+var dataIrlande = {
+    label: IrlandeNom,
+    data: IrlandeNombres,
+};
+
+// console.log(Irlande);
+// console.log(IrlandeNom);
+// console.log(IrlandeNrs);
+// console.log(IrlandeNombres);
+// console.log(dataIrlande);
 
 var crimiData = {
     labels: yearList,
-    datasets: [dataBelgique, dataBulgarie, dataReptcheque, dataDanmark, dataAllemagne, dataEstonie]
+    datasets: [dataBelgique, dataBulgarie, dataReptcheque, dataDanmark, dataAllemagne, dataEstonie, dataIrlande],
 };
+
+// console.log(crimiData);
+
+//Options
+
+var options = {
+    scales: {
+      yAxes: [{
+        ticks: {
+          max: 7000,
+          min: 0,
+          stepSize: 200
+        }
+      }]
+    },
+  };
 
 // CHART.JS CODE
 
@@ -170,10 +220,5 @@ var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'line',
     data: crimiData,
-    options: {
-            scaleOverride: true,
-            scaleStartValue: 0,
-            scaleSteps: 20,
-            scaleStepWidth: 300,
-    }
+    options: options
 });
