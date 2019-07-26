@@ -11,7 +11,6 @@ header.appendChild(canvas);
 var table = document.getElementById("table1");
 console.log(table);
 var rowYears = table.rows[1];
-console.log(rowYears.cells);
 
 var yearList = [];
 
@@ -20,13 +19,12 @@ for (y = 2; y < rowYears.cells.length; y++) {
   yearList.push(years);
 }
 
-// Country name for dataset 1
+// Country dataset 1
 
 var rowBe = table.rows[2];
 console.log(rowBe);
 
 var BeName = rowBe.cells[1].firstChild.data;
-console.log(BeName);
 
 var BeData = [];
 
@@ -35,26 +33,20 @@ for (Be = 2; Be < rowBe.cells.length; Be++) {
   BeData.push(BeNrs);
 }
 
-console.log(BeNrs);
-console.log(yearList);
-console.log(BeData);
+// Loop to pull data from every country
 
-// Options
+console.log(table.rows);
 
-// var options = {
-//   scales: {
-//     yAxes: [
-//       {
-//         ticks: {
-//           min: -2000,
-//           max: 8000
-//         }
-//       }
-//     ]
-//   }
-// };
+var allRows = [];
 
-// Chart JS basic function
+for (ro = 2; ro < table.rows.length; ro++) {
+  var currentRow = table.rows[ro].cells;
+  allRows.push(currentRow);
+}
+
+console.log(allRows);
+
+// Chart js basic data
 
 var ctx = document.getElementById("myChart").getContext("2d");
 var chart = new Chart(ctx, {
@@ -65,7 +57,7 @@ var chart = new Chart(ctx, {
     datasets: [
       {
         label: BeName,
-        backgroundColor: "rgb(255, 99, 132)",
+        // backgroundColor: "rgb(255, 99, 132)",
         borderColor: "rgb(255, 99, 132)",
         data: BeData
       }
